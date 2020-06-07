@@ -7,3 +7,7 @@ INSERT INTO unit_of_measure (uom) VALUES ('Tablespoon');
 INSERT INTO unit_of_measure (uom) VALUES ('Cup');
 INSERT INTO unit_of_measure (uom) VALUES ('Pinch');
 INSERT INTO unit_of_measure (uom) VALUES ('Ounce');
+INSERT INTO unit_of_measure (uom) VALUES ('Dash');
+INSERT INTO unit_of_measure (uom) VALUES ('Clove');
+INSERT INTO unit_of_measure (uom) VALUES ('Pound');
+INSERT INTO unit_of_measure (uom) VALUES ('Unit');
