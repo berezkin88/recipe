@@ -1,10 +1,13 @@
 package person.birch.recipe.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 /**
  * @author Aleksandr Beryozkin
  */
+@Data
 @Entity
 public class UnitOfMeasure {
 
@@ -12,20 +15,4 @@ public class UnitOfMeasure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String uom;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUom() {
-        return uom;
-    }
-
-    public void setUom(String uom) {
-        this.uom = uom;
-    }
 }

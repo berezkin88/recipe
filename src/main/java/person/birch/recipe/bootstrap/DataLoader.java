@@ -1,5 +1,6 @@
 package person.birch.recipe.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import person.birch.recipe.domain.*;
@@ -14,6 +15,7 @@ import java.util.Set;
  * @author Aleksandr Beryozkin
  */
 @Component
+@Slf4j
 public class DataLoader implements CommandLineRunner {
 
     private final CategoryRepository categoryRepository;
@@ -34,7 +36,8 @@ public class DataLoader implements CommandLineRunner {
     private void loader() {
         recipeRepository.deleteAll();
 
-        System.out.println("Database cleared");
+//        System.out.println("Database cleared");
+        log.info("Database cleared");
 
         Category mexican = categoryRepository.findByDescription("Mexican").get();
 
@@ -86,7 +89,8 @@ public class DataLoader implements CommandLineRunner {
 
         Recipe savedRecipe1 = recipeRepository.save(recipeChicken);
 
-        System.out.println("Recipe with id " + savedRecipe1.getId() + " saved");
+//        System.out.println("Recipe with id " + savedRecipe1.getId() + " saved");
+        log.info("Recipe with id {} saved", savedRecipe1.getId());
 
         Ingredient avocado = new Ingredient();
         avocado.setAmount(new BigDecimal(2));
@@ -130,8 +134,10 @@ public class DataLoader implements CommandLineRunner {
 
         Recipe savedRecipe2 = recipeRepository.save(recipeGuacamole);
 
-        System.out.println("Recipe with id " + savedRecipe2.getId() + " saved");
+//        System.out.println("Recipe with id " + savedRecipe2.getId() + " saved");
+        log.info("Recipe with id {} saved", savedRecipe2.getId());
 
-        System.out.println("Recipes saved");
+//        System.out.println("Recipes saved");
+        log.info("Recipes saved");
     }
 }

@@ -1,5 +1,6 @@
 package person.birch.recipe.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import person.birch.recipe.services.RecipeService;
 import java.util.Optional;
 
 @Controller
+@Slf4j
 public class IndexController {
 
     private final CategoryRepository categoryRepository;
@@ -32,8 +34,8 @@ public class IndexController {
         Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
         Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByUom("Teaspoon");
 
-        System.out.println("Cat Id is: " + categoryOptional.get().getId());
-        System.out.println("UOM Id is: " + unitOfMeasureOptional.get().getId());
+        log.info("Cat Id is: {}", categoryOptional.get().getId());
+        log.info("UOM Id is: {}", unitOfMeasureOptional.get().getId());
 
         return "index";
     }
