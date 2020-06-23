@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class RecipeServiceImpl implements RecipeService{
+public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
 
@@ -25,5 +25,10 @@ public class RecipeServiceImpl implements RecipeService{
         log.debug("Here in the service");
 
         return (List<Recipe>) recipeRepository.findAll();
+    }
+
+    @Override
+    public Recipe findById(Long id) {
+        return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
     }
 }
