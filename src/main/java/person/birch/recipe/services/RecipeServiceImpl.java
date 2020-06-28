@@ -2,6 +2,10 @@ package person.birch.recipe.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import person.birch.recipe.commands.RecipeCommand;
+import person.birch.recipe.converters.RecipeCommandToRecipe;
+import person.birch.recipe.converters.RecipeToRecipeCommand;
 import person.birch.recipe.domain.Recipe;
 import person.birch.recipe.repositories.RecipeRepository;
 
@@ -15,9 +19,13 @@ import java.util.List;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -30,5 +38,15 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe findById(Long id) {
         return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }

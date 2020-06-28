@@ -1,5 +1,6 @@
 package person.birch.recipe.services;
 
+import person.birch.recipe.commands.RecipeCommand;
 import person.birch.recipe.domain.Recipe;
 
 import java.util.List;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface RecipeService {
     List<Recipe> findAll();
     Recipe findById(Long id);
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 }
