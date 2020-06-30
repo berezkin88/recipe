@@ -12,6 +12,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {"ingredients", "notes"})
+@ToString(exclude = "ingredients")
 public class Recipe {
 
     @Id
@@ -49,5 +50,10 @@ public class Recipe {
     public void setNotes(Notes notes) {
         this.notes = notes;
         notes.setRecipe(this);
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        ingredients.forEach(ingredient -> ingredient.setRecipe(this));
+        this.ingredients = ingredients;
     }
 }
