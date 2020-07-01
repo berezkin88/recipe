@@ -1,15 +1,18 @@
 package person.birch.recipe.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * @author Aleksandr Beryozkin
  */
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Ingredient {
 

@@ -7,8 +7,10 @@ import javax.persistence.*;
 /**
  * @author Aleksandr Beryozkin
  */
-@Data
+@Getter
+@Setter
 @Entity
+@EqualsAndHashCode(exclude = "recipes")
 public class Notes {
 
     @Id

@@ -9,7 +9,8 @@ import java.util.Set;
 /**
  * @author Aleksandr Beryozkin
  */
-@Data
+@Getter
+@Setter
 @Entity
 @EqualsAndHashCode(exclude = {"ingredients", "notes"})
 @ToString(exclude = "ingredients")
