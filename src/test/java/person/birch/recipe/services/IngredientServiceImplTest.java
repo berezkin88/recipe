@@ -14,6 +14,7 @@ import person.birch.recipe.domain.Recipe;
 import person.birch.recipe.repositories.RecipeRepository;
 import person.birch.recipe.repositories.UnitOfMeasureRepository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -90,6 +91,31 @@ class IngredientServiceImplTest {
         verify(recipeRepository, times(1)).save(any(Recipe.class));
 
         assertEquals(Long.valueOf(3L), savedCommand.getId());
+    }
 
+    @Test
+    void deleteIngredientFromRecipeById() {
+        Recipe recipe = new Recipe();
+        Ingredient ingredient1 = new Ingredient();
+        ingredient1.setId(1L);
+        ingredient1.setRecipe(recipe);
+        Ingredient ingredient2 = new Ingredient();
+        ingredient2.setId(2L);
+        ingredient2.setRecipe(recipe);
+        Set<Ingredient> ingredients = new HashSet<>();
+        ingredients.add(ingredient1);
+        ingredients.add(ingredient2);
+        recipe.setIngredients(ingredients);
+
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        ingredientService.deleteIngredientFromRecipeById(1L, 1L);
+
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, times(1)).save(any(Recipe.class));
+
+        assertEquals(1, recipe.getIngredients().size());
     }
 }
