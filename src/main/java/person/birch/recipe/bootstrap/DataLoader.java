@@ -71,9 +71,7 @@ public class DataLoader implements CommandLineRunner {
         recipeChicken.setCategories(Set.of(mexican));
         recipeChicken.setIngredients(Set.of(ancho, oregano, garlic, chickenThigh));
         recipeChicken.setCookTime(15);
-        recipeChicken.setDescription("Spicy grilled chicken tacos! Quick marinade, then grill. " +
-                "Ready in about 30 minutes. Great for a quick weeknight dinner, backyard cookouts, " +
-                "and tailgate parties.");
+        recipeChicken.setDescription("Spicy grilled chicken tacos!");
         recipeChicken.setDifficulty(Difficulty.EASY);
         recipeChicken.setDirections("Dinner, Grill");
         recipeChicken.setNotes(new Notes());
@@ -116,9 +114,7 @@ public class DataLoader implements CommandLineRunner {
         recipeGuacamole.setCategories(Set.of(mexican));
         recipeGuacamole.setIngredients(Set.of(avocado, salt, limeJuice, blackPepper));
         recipeGuacamole.setCookTime(10);
-        recipeGuacamole.setDescription("The best guacamole keeps it simple: just ripe avocados, salt, " +
-                "a squeeze of lime, onions, chiles, cilantro, and some chopped tomato. " +
-                "Serve it as a dip at your next party or spoon it on top of tacos for an easy dinner upgrade.");
+        recipeGuacamole.setDescription("The best guacamole");
         recipeGuacamole.setDifficulty(Difficulty.MODERATE);
         recipeGuacamole.setDirections("Video, Dip");
         recipeGuacamole.setNotes(new Notes());
