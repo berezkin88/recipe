@@ -7,6 +7,7 @@ import person.birch.recipe.commands.RecipeCommand;
 import person.birch.recipe.converters.RecipeCommandToRecipe;
 import person.birch.recipe.converters.RecipeToRecipeCommand;
 import person.birch.recipe.domain.Recipe;
+import person.birch.recipe.exceptions.NotFoundException;
 import person.birch.recipe.repositories.RecipeRepository;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findById(Long id) {
-        return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
+        return recipeRepository.findById(id).orElseThrow(() -> new NotFoundException("Recipe not found"));
     }
 
     @Override
