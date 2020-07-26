@@ -12,6 +12,8 @@ import person.birch.recipe.repositories.RecipeRepository;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 /**
  * @author Aleksandr Beryozkin
  */
@@ -38,7 +40,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findById(Long id) {
-        return recipeRepository.findById(id).orElseThrow(() -> new NotFoundException("Recipe not found"));
+        return recipeRepository.findById(id).orElseThrow(() -> new NotFoundException(format("Recipe not found.For ID value %d", id)));
     }
 
     @Override
